@@ -1,0 +1,7 @@
+{
+  "strategy": "aggressive",
+  "risk_level": 0.7,
+  "exploration_rate": 0.3,
+  "memory_depth": 6,
+  "bluff_probability": 0.3
+}

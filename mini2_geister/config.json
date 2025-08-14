@@ -1,0 +1,27 @@
+{
+  "game_settings": {
+    "board_size": 4,
+    "pieces_per_player": 2,
+    "max_moves": 50
+  },
+  "quantum_settings": {
+    "n_qubits": 4,
+    "n_layers": 2,
+    "learning_rate": 0.001,
+    "epsilon_start": 0.9,
+    "epsilon_end": 0.1,
+    "epsilon_decay": 0.995
+  },
+  "training_settings": {
+    "episodes": 1000,
+    "batch_size": 32,
+    "memory_size": 2000,
+    "target_update_freq": 100,
+    "save_interval": 100
+  },
+  "evaluation_settings": {
+    "tournament_episodes": 100,
+    "quick_eval_episodes": 50,
+    "benchmark_episodes": 200
+  }
+}

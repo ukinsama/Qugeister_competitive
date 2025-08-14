@@ -1,0 +1,9 @@
+{
+    "python.defaultInterpreterPath": "/mnt/c/Users/KS/qugeister_competitive/venv/bin/python",
+    "python.terminal.activateEnvironment": true,
+    "jupyter.jupyterServerType": "local",
+    "jupyter.widgetScriptSources": [
+        "jsdelivr.com",
+        "unpkg.com"
+    ]
+}

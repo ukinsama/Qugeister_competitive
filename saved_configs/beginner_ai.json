@@ -1,0 +1,7 @@
+{
+  "strategy": "balanced",
+  "risk_level": 0.4,
+  "exploration_rate": 0.5,
+  "memory_depth": 3,
+  "bluff_probability": 0.1
+}
