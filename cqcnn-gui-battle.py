@@ -1,14 +1,3 @@
-def initialize_game_with_placement(self, placement_a: dict, placement_b: dict):
-        """指定された配置でゲームを初期化"""
-        # Player Aの配置
-        for pos, piece_type in placement_a.items():
-            self.board[pos] = 1
-            self.player_a_pieces[pos] = piece_type
-        
-        # Player Bの配置
-        for pos, piece_type in placement_b.items():
-            self.board[pos] = -1
-            self.player_b_pieces[pos] = piece_type    
 def _change_agents(self):
         """AIを変更"""
         # ゲームを一時停止
@@ -1412,6 +1401,18 @@ class SimpleGameEngine:
             self.board[pos] = -1
             self.player_b_pieces[pos] = piece_type
     
+    def initialize_game_with_placement(self, placement_a: dict, placement_b: dict):
+        """指定された配置でゲームを初期化"""
+        # Player Aの配置
+        for pos, piece_type in placement_a.items():
+            self.board[pos] = 1
+            self.player_a_pieces[pos] = piece_type
+        
+        # Player Bの配置
+        for pos, piece_type in placement_b.items():
+            self.board[pos] = -1
+            self.player_b_pieces[pos] = piece_type   
+    
     def get_legal_moves(self, player: str) -> List[Tuple]:
         """合法手を取得"""
         moves = []
@@ -1512,6 +1513,43 @@ class SimpleGameEngine:
         self.player_b_pieces = {}
         self.turn = 0
         self.winner = None
+    
+    def _start_game(self):
+        """ゲームを開始"""
+        self.game_engine = SimpleGameEngine()
+        
+        # エージェントの初期配置を取得
+        placement_a = self.agent1.get_initial_placement()
+        placement_b = self.agent2.get_initial_placement()
+        
+        # initialize_game_with_placementがない場合は手動で設定
+        self.game_engine.board = np.zeros((6, 6), dtype=int)
+        self.game_engine.player_a_pieces = {}
+        self.game_engine.player_b_pieces = {}
+        
+        for pos, piece_type in placement_a.items():
+            self.game_engine.board[pos] = 1
+            self.game_engine.player_a_pieces[pos] = piece_type
+        
+        for pos, piece_type in placement_b.items():
+            self.game_engine.board[pos] = -1
+            self.game_engine.player_b_pieces[pos] = piece_type
+        
+        # ボード状態を更新
+        self.board.update_state(
+            self.game_engine.board,
+            self.game_engine.player_a_pieces,
+            self.game_engine.player_b_pieces
+        )
+        
+        self.game_running = True
+        self.current_player = 'A'
+        
+        self.info_panel.update_info(
+            turn=0,
+            current_player='A',
+            status='Playing'
+        )
 
 
 def create_demo_agent(player_id: str, name: str):
