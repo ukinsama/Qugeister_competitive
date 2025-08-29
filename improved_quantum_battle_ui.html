@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Battle AI Designer - 改善版</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --warning-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --dark-bg: rgba(0, 0, 0, 0.8);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-light: rgba(255, 255, 255, 0.9);
+            --shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            --border-radius: 16px;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--primary-gradient);
+            min-height: 100vh;
+            color: var(--text-light);
+            overflow-x: auto;
+        }
+
+        /* Glass morphism effects */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Header */
+        .main-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+        }
+
+        .main-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #fff, #f0f8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .main-header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        /* Navigation Pills */
+        .nav-pills {
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .nav-pills .nav-link {
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: var(--text-light);
+            margin: 0 8px;
+            padding: 12px 24px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-pills .nav-link:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--success-gradient);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .nav-pills .nav-link:hover:before,
+        .nav-pills .nav-link.active:before {
+            left: 0;
+        }
+
+        .nav-pills .nav-link.active {
+            background: transparent;
+            border-color: rgba(255, 255, 255, 0.6);
+            color: white;
+        }
+
+        /* Step containers */
+        .step-container {
+            display: none;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .step-container.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Card improvements */
+        .enhanced-card {
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .enhanced-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            background: var(--secondary-gradient);
+            border: none;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            padding: 1.25rem;
+        }
+
+        .card-header h5 {
+            margin: 0;
+            color: white;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Form controls */
+        .form-control, .form-select {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus, .form-select:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25);
+            color: white;
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .form-label {
+            color: var(--text-light);
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+
+        /* Range sliders */
+        .form-range {
+            background: transparent;
+        }
+
+        .form-range::-webkit-slider-track {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            height: 8px;
+        }
+
+        .form-range::-webkit-slider-thumb {
+            background: var(--success-gradient);
+            border: 2px solid white;
+            border-radius: 50%;
+            box-shadow: var(--shadow);
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: var(--success-gradient);
+            border: none;
+            border-radius: 12px;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-secondary {
+            background: var(--secondary-gradient);
+            border: none;
+            border-radius: 12px;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-info {
+            background: var(--warning-gradient);
+            border: none;
+            color: #333;
+            font-weight: 600;
+        }
+
+        /* Placement board */
+        .placement-board {
+            display: grid;
+            grid-template-columns: repeat(6, 60px);
+            grid-template-rows: repeat(6, 60px);
+            gap: 2px;
+            margin: 20px auto;
+            justify-content: center;
+            background: var(--dark-bg);
+            padding: 15px;
+            border-radius: var(--border-radius);
+        }
+
+        .board-cell {
+            width: 60px;
+            height: 60px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .board-cell:hover {
+            border-color: rgba(255, 255, 255, 0.6);
+            transform: scale(1.05);
+        }
+
+        .player-a-area {
+            background: rgba(76, 175, 80, 0.3);
+            border-color: #4CAF50;
+        }
+
+        .player-b-area {
+            background: rgba(244, 67, 54, 0.3);
+            border-color: #f44336;
+        }
+
+        .placed-good {
+            background: var(--success-gradient);
+            color: white;
+            border-color: #4CAF50;
+        }
+
+        .placed-bad {
+            background: var(--secondary-gradient);
+            color: white;
+            border-color: #f44336;
+        }
+
+        /* Progress bars */
+        .progress {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            height: 12px;
+        }
+
+        .progress-bar {
+            background: var(--success-gradient);
+            border-radius: 12px;
+        }
+
+        /* Code output */
+        .code-output {
+            background: var(--dark-bg);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            font-family: 'Fira Code', 'Courier New', monospace;
+            color: #00ff41;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            max-height: 400px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+
+        /* Status indicators */
+        .status-indicator {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-ready {
+            background: var(--warning-gradient);
+            color: #333;
+        }
+
+        .status-training {
+            background: var(--secondary-gradient);
+            color: white;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .main-header h1 {
+                font-size: 2rem;
+            }
+            
+            .placement-board {
+                grid-template-columns: repeat(6, 50px);
+                grid-template-rows: repeat(6, 50px);
+            }
+            
+            .board-cell {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        /* Floating action button */
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--success-gradient);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 40px rgba(31, 38, 135, 0.5);
+        }
+
+        /* Loading animation */
+        .loading-spinner {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 3px solid white;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Tooltip improvements */
+        .tooltip {
+            font-size: 0.875rem;
+        }
+
+        .tooltip-inner {
+            background: var(--dark-bg);
+            border-radius: 8px;
+            padding: 8px 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <!-- Header -->
+        <header class="main-header glass-card">
+            <h1><i class="fas fa-atom me-3"></i>Quantum Battle AI Designer</h1>
+            <p class="subtitle">量子機械学習とガイスターゲームAIの統合開発環境</p>
+            <div class="d-flex justify-content-center gap-3 mt-3">
+                <span class="status-indicator status-ready">
+                    <i class="fas fa-check-circle me-2"></i>システム準備完了
+                </span>
+                <span class="status-indicator status-training">
+                    <i class="fas fa-brain me-2"></i>AI設計モード
+                </span>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="glass-nav">
+            <ul class="nav nav-pills nav-fill" id="main-tabs" role="tablist">
+                <li class="nav-item">
+                    <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#step1" type="button">
+                        <i class="fas fa-chess-board me-2"></i>
+                        <span>Step 1: 配置戦略</span>
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#step2" type="button">
+                        <i class="fas fa-search me-2"></i>
+                        <span>Step 2: 敵駒推定</span>
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#step3" type="button">
+                        <i class="fas fa-trophy me-2"></i>
+                        <span>Step 3: 報酬設計</span>
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#step4" type="button">
+                        <i class="fas fa-atom me-2"></i>
+                        <span>Step 4: 量子回路</span>
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" data-bs-toggle="pill" data-bs-target="#step5" type="button">
+                        <i class="fas fa-cogs me-2"></i>
+                        <span>Step 5: 行動選択</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="tab-content mt-4">
+            <!-- Step 1: 配置戦略 -->
+            <div class="tab-pane fade show active" id="step1" role="tabpanel">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="enhanced-card glass-card">
+                            <div class="card-header">
+                                <h5><i class="fas fa-chess-board"></i> ガイスター駒配置システム</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row mb-4">
+                                    <div class="col-md-6">
+                                        <label class="form-label">配置戦略</label>
+                                        <select class="form-select" id="placementStrategy">
+                                            <option value="aggressive">攻撃的配置（前進重視）</option>
+                                            <option value="defensive">守備的配置（安全重視）</option>
+                                            <option value="balanced" selected>バランス配置（推奨）</option>
+                                            <option value="deceptive">欺瞒配置（相手を混乱）</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">善玉配置優先度 <span id="goodPriorityValue">0.7</span></label>
+                                        <input type="range" class="form-range" id="goodPriority" min="0.1" max="1.0" step="0.1" value="0.7">
+                                    </div>
+                                </div>
+
+                                <div class="text-center mb-4">
+                                    <h6>ガイスターボード配置（6×6）</h6>
+                                    <p class="small opacity-75">緑色：プレイヤーA配置エリア（下側）｜ 赤色：プレイヤーB配置エリア（上側）</p>
+                                </div>
+                                
+                                <div class="placement-board" id="placementBoard">
+                                    <!-- JavaScript で生成 -->
+                                </div>
+
+                                <div class="row mt-4">
+                                    <div class="col-md-4">
+                                        <div class="text-center">
+                                            <h6 class="text-success">善玉 (Good)</h6>
+                                            <div class="badge bg-success fs-6" id="goodCount">0/4</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="text-center">
+                                            <h6 class="text-danger">悪玉 (Bad)</h6>
+                                            <div class="badge bg-danger fs-6" id="badCount">0/4</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="text-center">
+                                            <button class="btn btn-secondary" onclick="resetPlacement()">
+                                                <i class="fas fa-redo"></i> リセット
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4">
+                        <div class="enhanced-card glass-card">
+                            <div class="card-header">
+                                <h5><i class="fas fa-info-circle"></i> 配置ガイド</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="alert alert-info">
+                                    <h6><i class="fas fa-lightbulb me-2"></i>配置のコツ</h6>
+                                    <ul class="small mb-0">
+                                        <li>善玉は脱出しやすい外側に</li>
+                                        <li>悪玉は相手に取らせやすい位置に</li>
+                                        <li>相手に駒の種類を推測されにくく</li>
+                                        <li>序盤から中盤の戦略を考慮</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="mt-3">
+                                    <h6>現在の戦略分析</h6>
+                                    <div class="progress mb-2">
+                                        <div class="progress-bar" style="width: 70%"></div>
+                                    </div>
+                                    <small class="text-muted">攻撃性: 70% | 守備性: 30%</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: 敵駒推定 -->
+            <div class="tab-pane fade" id="step2" role="tabpanel">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="enhanced-card glass-card">
+                            <div class="card-header">
+                                <h5><i class="fas fa-search"></i> 量子駒推定システム</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label class="form-label">推定アルゴリズム</label>
+                                    <select class="form-select" id="estimationAlgorithm">
+                                        <option value="cqcnn" selected>CQCNN（量子畳み込み）</option>
+                                        <option value="quantum_svm">Quantum SVM</option>
+                                        <option value="variational">変分量子分類器</option>
+                                        <option value="hybrid">ハイブリッド（古典+量子）</option>
+                                    </select>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">量子ビット数 <span id="qubitValue">8</span></label>
+                                        <input type="range" class="form-range" id="qubits" min="4" max="16" value="8">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">回路層数 <span id="layerValue">3</span></label>
+                                        <input type="range" class="form-range" id="layers" min="1" max="8" value="3">
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">エンタングルメント強度 <span id="entanglementValue">0.5</span></label>
+                                    <input type="range" class="form-range" id="entanglement" min="0.1" max="1.0" step="0.1" value="0.5">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">学習率 <span id="learningRateValue">0.001</span></label>
+                                    <input type="range" class="form-range" id="learningRate" min="0.0001" max="0.01" step="0.0001" value="0.001">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="enhanced-card glass-card">
+                            <div class="card-header">
+                                <h5><i class="fas fa-chart-line"></i> 推定性能モニター</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row text-center">
+                                    <div class="col-4">
+                                        <h6>精度</h6>
+                                        <div class="fs-4 text-success">87.3%</div>
+                                    </div>
+                                    <div class="col-4">
+                                        <h6>速度</h6>
+                                        <div class="fs-4 text-info">12ms</div>
+                                    </div>
+                                    <div class="col-4">
+                                        <h6>確信度</h6>
+                                        <div class="fs-4 text-warning">0.82</div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-4">
+                                    <h6>量子回路構成</h6>
+                                    <div class="code-output">
+Quantum Circuit (8 qubits, 3 layers):
+┌───┐ ┌─────────┐ ┌───┐
+│ H │─│ RY(θ₁) │─│ X │─
+├───┤ ├─────────┤ ├───┤
+│ H │─│ RZ(θ₂) │─│ • │─
+├───┤ ├─────────┤ └─┬─┘
+│ H │─│ RX(θ₃) │───│──
+└───┘ └─────────┘   │
+Entanglement: CNOT gates
+Measurement: Pauli-Z basis
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: 報酬設計 -->
+            <div class="tab-pane fade" id="step3" role="tabpanel">
+                <div class="enhanced-card glass-card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-trophy"></i> 強化学習報酬システム</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h6>勝利条件報酬</h6>
+                                <div class="mb-3">
+                                    <label class="form-label">善玉脱出 <span id="escapeRewardValue">+100</span></label>
+                                    <input type="range" class="form-range" id="escapeReward" min="50" max="200" value="100">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">相手善玉全取り <span id="captureRewardValue">+150</span></label>
+                                    <input type="range" class="form-range" id="captureReward" min="80" max="250" value="150">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">悪玉全消去 <span id="badEliminateRewardValue">+120</span></label>
+                                    <input type="range" class="form-range" id="badEliminateReward" min="60" max="200" value="120">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <h6>戦術行動報酬</h6>
+                                <div class="mb-3">
+                                    <label class="form-label">善玉前進 <span id="advanceRewardValue">+5</span></label>
+                                    <input type="range" class="form-range" id="advanceReward" min="1" max="15" value="5">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">相手駒捕獲 <span id="pieceCapture RewardValue">+20</span></label>
+                                    <input type="range" class="form-range" id="pieceCaptureReward" min="10" max="50" value="20">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">安全移動 <span id="safeMoveRewardValue">+2</span></label>
+                                    <input type="range" class="form-range" id="safeMoveReward" min="1" max="10" value="2">
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <h6>ペナルティ</h6>
+                                <div class="mb-3">
+                                    <label class="form-label">善玉損失 <span id="goodLossValue">-50</span></label>
+                                    <input type="range" class="form-range" id="goodLoss" min="-100" max="-20" value="-50">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">危険移動 <span id="dangerMoveValue">-10</span></label>
+                                    <input type="range" class="form-range" id="dangerMove" min="-30" max="-5" value="-10">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">時間消費 <span id="timeConsumptionValue">-1</span></label>
+                                    <input type="range" class="form-range" id="timeConsumption" min="-5" max="0" value="-1">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <h6>報酬関数プレビュー</h6>
+                            <div class="code-output">
+def calculate_reward(game_state, action, result):
+    reward = 0
+    
+    # 勝利条件チェック
+    if result.is_escape:
+        reward += 100  # 善玉脱出
+    elif result.all_good_captured:
+        reward += 150  # 相手善玉全取り
+    elif result.all_bad_eliminated:
+        reward += 120  # 悪玉全消去
+    
+    # 戦術評価
+    if result.piece_captured:
+        reward += 20  # 駒捕獲
+    if result.good_advanced:
+        reward += 5   # 善玉前進
+    
+    # ペナルティ
+    if result.good_lost:
+        reward -= 50  # 善玉損失
+    if result.dangerous_move:
+        reward -= 10  # 危険移動
+        
+    return reward
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: 量子回路 -->
+            <div class="tab-pane fade" id="step4" role="tabpanel">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="enhanced-card glass-card">
+                            <div class="card-header">
+                                <h5><i class="fas fa-atom"></i> 量子回路設計</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row mb-4">
+                                    <div class="col-md-6">
+                                        <label class="form-label">回路タイプ</label>
+                                        <select class="form-select" id="circuitType">
+                                            <option value="variational" selected>変分量子回路 (VQC)</option>
+                                            <option value="qaoa">QAOA</option>
+                                            <option value="vqe">VQE</option>
+                                            <option value="custom">カスタム回路</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">最適化手法</label>
+                                        <select class="form-select" id="optimizer">
+                                            <option value="adam" selected>Adam</option>
+                                            <option value="spsa">SPSA</option>
+                                            <option value="cobyla">COBYLA</option>
+                                            <option value="lbfgs">L-BFGS</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <h6>量子ゲート構成</h6>
+                                    <div class="code-output">
+# Quantum Circuit Design
+import pennylane as qml
+
+dev = qml.device('default.qubit', wires=8)
+
+@qml.qnode(dev)
+def quantum_circuit(inputs, weights):
+    # エンコーディング層
+    for i in range(8):
+        qml.RY(inputs[i], wires=i)
+    
+    # 変分層
+    for layer in range(3):
+        # パラメータ化ゲート
+        for i in range(8):
+            qml.RY(weights[layer, i, 0], wires=i)
+            qml.RZ(weights[layer, i, 1], wires=i)
+        
+        # エンタングリング層
+        for i in range(7):
+            qml.CNOT(wires=[i, i+1])
+        qml.CNOT(wires=[7, 0])  # 循環結合
+    
+    return [qml.expval(qml.PauliZ(i)) for i in range(8)]
+
+# パラメータ数: 48 (3層 × 8量子ビット × 2パラメータ)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="enhanced-card glass-card">
+                            <div class="card-header">
+                                <h5><i class="fas fa-microchip"></i> 量子リソース</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between">
+                                        <span>量子ビット使用率</span>
+                                        <span>8/16</span>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 50%"></div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between">
+                                        <span>回路深度</span>
+                                        <span>9</span>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-info" style="width: 45%"></div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="d-flex justify-content-between">
+                                        <span>パラメータ数</span>
+                                        <span>48</span>
+                                    </div>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-warning" style="width: 60%"></div>
+                                    </div>
+                                </div>
+
+                                <div class="alert alert-success mt-3">
+                                    <small>
+                                        <i class="fas fa-check-circle me-2"></i>
+                                        <strong>最適化完了</strong><br>
+                                        実行時間: 3.2ms<br>
+                                        精度: 94.7%
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5: 行動選択 -->
+            <div class="tab-pane fade" id="step5" role="tabpanel">
+                <div class="enhanced-card glass-card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-cogs"></i> 行動選択システム</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>ε-greedy 探索戦略</h6>
+                                <div class="mb-3">
+                                    <label class="form-label">初期探索率 <span id="epsilonStartValue">1.0</span></label>
+                                    <input type="range" class="form-range" id="epsilonStart" min="0.5" max="1.0" step="0.1" value="1.0">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">最終探索率 <span id="epsilonEndValue">0.01</span></label>
+                                    <input type="range" class="form-range" id="epsilonEnd" min="0.001" max="0.1" step="0.001" value="0.01">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">減衰率 <span id="epsilonDecayValue">0.995</span></label>
+                                    <input type="range" class="form-range" id="epsilonDecay" min="0.99" max="0.999" step="0.001" value="0.995">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <h6>Q学習パラメータ</h6>
+                                <div class="mb-3">
+                                    <label class="form-label">学習率 <span id="qLearningRateValue">0.001</span></label>
+                                    <input type="range" class="form-range" id="qLearningRate" min="0.0001" max="0.01" step="0.0001" value="0.001">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">割引率 <span id="gammaValue">0.99</span></label>
+                                    <input type="range" class="form-range" id="gamma" min="0.9" max="0.99" step="0.01" value="0.99">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">バッファサイズ <span id="bufferSizeValue">10000</span></label>
+                                    <input type="range" class="form-range" id="bufferSize" min="1000" max="50000" step="1000" value="10000">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <div class="d-flex justify-content-center gap-3">
+                                <button class="btn btn-primary btn-lg" onclick="generateAICode()">
+                                    <i class="fas fa-code me-2"></i>AIコード生成
+                                </button>
+                                <button class="btn btn-secondary btn-lg" onclick="testAI()">
+                                    <i class="fas fa-play me-2"></i>テスト実行
+                                </button>
+                                <button class="btn btn-info btn-lg" onclick="deployAI()">
+                                    <i class="fas fa-rocket me-2"></i>デプロイ
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="mt-4" id="generatedCode" style="display: none;">
+                            <h6>生成されたAIコード</h6>
+                            <div class="code-output" id="codeOutput"></div>
+                            <div class="mt-3">
+                                <button class="btn btn-success" onclick="downloadCode()">
+                                    <i class="fas fa-download me-2"></i>コードダウンロード
+                                </button>
+                                <button class="btn btn-warning" onclick="copyCode()">
+                                    <i class="fas fa-copy me-2"></i>クリップボードにコピー
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Button -->
+    <button class="fab" onclick="saveConfiguration()" title="設定を保存">
+        <i class="fas fa-save"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Global variables
+        let currentPieceType = 'good';
+        let placedPieces = { good: 0, bad: 0 };
+        let boardState = {};
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            initializePlacementBoard();
+            initializeRangeSliders();
+            initializeTooltips();
+        });
+
+        // Initialize placement board
+        function initializePlacementBoard() {
+            const board = document.getElementById('placementBoard');
+            board.innerHTML = '';
+            
+            for (let row = 0; row < 6; row++) {
+                for (let col = 0; col < 6; col++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'board-cell';
+                    cell.dataset.row = row;
+                    cell.dataset.col = col;
+                    
+                    // プレイヤーA配置エリア（下側2行、中央4列）
+                    if ((row === 0 || row === 1) && (col >= 1 && col <= 4)) {
+                        cell.classList.add('player-a-area');
+                        cell.title = 'プレイヤーA配置エリア';
+                        cell.onclick = () => placePiece(row, col, cell);
+                    }
+                    // プレイヤーB配置エリア（上側2行、中央4列）  
+                    else if ((row === 4 || row === 5) && (col >= 1 && col <= 4)) {
+                        cell.classList.add('player-b-area');
+                        cell.title = 'プレイヤーB配置エリア';
+                    }
+                    
+                    board.appendChild(cell);
+                }
+            }
+        }
+
+        // Place piece on board
+        function placePiece(row, col, cell) {
+            if (placedPieces.good >= 4 && currentPieceType === 'good') {
+                alert('善玉は最大4個まで配置可能です');
+                return;
+            }
+            if (placedPieces.bad >= 4 && currentPieceType === 'bad') {
+                alert('悪玉は最大4個まで配置可能です');
+                return;
+            }
+
+            const key = `${row}-${col}`;
+            
+            // Remove existing piece
+            if (boardState[key]) {
+                placedPieces[boardState[key]]--;
+                delete boardState[key];
+                cell.classList.remove('placed-good', 'placed-bad');
+                cell.textContent = '';
+            }
+
+            // Place new piece
+            if (currentPieceType === 'good') {
+                boardState[key] = 'good';
+                placedPieces.good++;
+                cell.classList.add('placed-good');
+                cell.textContent = 'G';
+                currentPieceType = 'bad';
+            } else {
+                boardState[key] = 'bad';
+                placedPieces.bad++;
+                cell.classList.add('placed-bad');
+                cell.textContent = 'B';
+                currentPieceType = 'good';
+            }
+
+            updatePieceCount();
+        }
+
+        // Update piece count display
+        function updatePieceCount() {
+            document.getElementById('goodCount').textContent = `${placedPieces.good}/4`;
+            document.getElementById('badCount').textContent = `${placedPieces.bad}/4`;
+        }
+
+        // Reset placement
+        function resetPlacement() {
+            placedPieces = { good: 0, bad: 0 };
+            boardState = {};
+            currentPieceType = 'good';
+            
+            document.querySelectorAll('.board-cell').forEach(cell => {
+                cell.classList.remove('placed-good', 'placed-bad');
+                cell.textContent = '';
+            });
+            
+            updatePieceCount();
+        }
+
+        // Initialize range sliders
+        function initializeRangeSliders() {
+            const sliders = document.querySelectorAll('input[type="range"]');
+            sliders.forEach(slider => {
+                const valueSpan = document.getElementById(slider.id + 'Value');
+                if (valueSpan) {
+                    slider.addEventListener('input', function() {
+                        valueSpan.textContent = this.value;
+                    });
+                }
+            });
+        }
+
+        // Initialize tooltips
+        function initializeTooltips() {
+            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+            const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+        }
+
+        // Generate AI code
+        function generateAICode() {
+            const loadingHTML = `
+                <div class="loading-spinner"></div>AIコード生成中...
+            `;
+            
+            document.getElementById('codeOutput').innerHTML = loadingHTML;
+            document.getElementById('generatedCode').style.display = 'block';
+            
+            setTimeout(() => {
+                const aiCode = `#!/usr/bin/env python3
+"""
+Generated Quantum Geister AI
+Auto-generated by Quantum Battle AI Designer
+"""
+
+import numpy as np
+import torch
+import torch.nn as nn
+import pennylane as qml
+from typing import Dict, List, Tuple
+
+class QuantumGeisterAI:
+    def __init__(self):
+        self.device = qml.device('default.qubit', wires=8)
+        self.weights = np.random.random((3, 8, 2)) * 0.1
+        
+        # 設定パラメータ
+        self.config = {
+            'placement_strategy': '${document.getElementById('placementStrategy').value}',
+            'qubits': ${document.getElementById('qubits').value},
+            'layers': ${document.getElementById('layers').value},
+            'learning_rate': ${document.getElementById('learningRate').value},
+            'epsilon_start': ${document.getElementById('epsilonStart').value},
+            'epsilon_end': ${document.getElementById('epsilonEnd').value},
+            'epsilon_decay': ${document.getElementById('epsilonDecay').value},
+            'gamma': ${document.getElementById('gamma').value}
+        }
+    
+    @qml.qnode(device)
+    def quantum_circuit(self, inputs, weights):
+        # エンコーディング層
+        for i in range(8):
+            qml.RY(inputs[i], wires=i)
+        
+        # 変分層
+        for layer in range(${document.getElementById('layers').value}):
+            for i in range(8):
+                qml.RY(weights[layer, i, 0], wires=i)
+                qml.RZ(weights[layer, i, 1], wires=i)
+            
+            # エンタングルメント
+            for i in range(7):
+                qml.CNOT(wires=[i, i+1])
+            qml.CNOT(wires=[7, 0])
+        
+        return [qml.expval(qml.PauliZ(i)) for i in range(8)]
+    
+    def get_initial_placement(self):
+        """初期配置を生成"""
+        placement = {}
+        # プレイヤーA配置エリア
+        positions = [(0,1), (0,2), (0,3), (0,4), (1,1), (1,2), (1,3), (1,4)]
+        
+        strategy = self.config['placement_strategy']
+        if strategy == 'aggressive':
+            # 攻撃的配置: 善玉を前に
+            good_positions = positions[:4]
+            bad_positions = positions[4:]
+        elif strategy == 'defensive':
+            # 守備的配置: 善玉を後ろに
+            good_positions = positions[4:]
+            bad_positions = positions[:4]
+        else:
+            # バランス配置
+            good_positions = [positions[0], positions[2], positions[5], positions[7]]
+            bad_positions = [positions[1], positions[3], positions[4], positions[6]]
+        
+        for pos in good_positions:
+            placement[pos] = 'good'
+        for pos in bad_positions:
+            placement[pos] = 'bad'
+            
+        return placement
+    
+    def estimate_enemy_pieces(self, board_state):
+        """敵駒の種類を推定"""
+        # ボード状態をテンソルに変換
+        board_tensor = self.board_to_tensor(board_state)
+        
+        # 量子回路で推論
+        quantum_output = self.quantum_circuit(board_tensor, self.weights)
+        
+        # 確率に変換
+        probabilities = torch.softmax(torch.tensor(quantum_output[:6]), dim=0)
+        
+        return {
+            'good_probability': probabilities[0].item(),
+            'bad_probability': probabilities[1].item(),
+            'confidence': max(probabilities).item()
+        }
+    
+    def calculate_reward(self, game_state, action, result):
+        """報酬を計算"""
+        reward = 0
+        
+        # 勝利条件報酬
+        if result.get('escape'):
+            reward += ${document.getElementById('escapeReward').value}
+        if result.get('capture_all_good'):
+            reward += ${document.getElementById('captureReward').value}
+        if result.get('eliminate_all_bad'):
+            reward += ${document.getElementById('badEliminateReward').value}
+            
+        # 戦術報酬
+        if result.get('advance'):
+            reward += ${document.getElementById('advanceReward').value}
+        if result.get('capture'):
+            reward += ${document.getElementById('pieceCaptureReward').value}
+            
+        # ペナルティ
+        if result.get('good_lost'):
+            reward += ${document.getElementById('goodLoss').value}
+        if result.get('danger_move'):
+            reward += ${document.getElementById('dangerMove').value}
+            
+        return reward
+    
+    def select_action(self, game_state, legal_moves):
+        """行動を選択"""
+        if np.random.random() < self.epsilon:
+            # 探索: ランダム行動
+            return np.random.choice(legal_moves)
+        else:
+            # 活用: 最適行動
+            q_values = []
+            for move in legal_moves:
+                # 各手のQ値を推定
+                q_value = self.estimate_q_value(game_state, move)
+                q_values.append(q_value)
+            
+            best_move_idx = np.argmax(q_values)
+            return legal_moves[best_move_idx]
+    
+    def board_to_tensor(self, board_state):
+        """ボード状態をテンソルに変換"""
+        tensor = np.zeros(25)  # 5x5 board flattened
+        # 実装: ボード状態を数値化
+        return tensor
+    
+    def estimate_q_value(self, state, action):
+        """Q値を推定"""
+        # 量子回路による状態-行動価値推定
+        state_tensor = self.board_to_tensor(state)
+        q_output = self.quantum_circuit(state_tensor, self.weights)
+        return np.sum(q_output)
+
+# 使用例
+if __name__ == "__main__":
+    ai = QuantumGeisterAI()
+    print("Quantum Geister AI initialized successfully!")
+    print(f"Configuration: {ai.config}")
+    
+    # 初期配置をテスト
+    placement = ai.get_initial_placement()
+    print(f"Initial placement: {placement}")
+`;
+                
+                document.getElementById('codeOutput').textContent = aiCode;
+            }, 2000);
+        }
+
+        // Test AI
+        function testAI() {
+            alert('AIテスト機能は開発中です。生成されたコードを実際の環境で実行してテストしてください。');
+        }
+
+        // Deploy AI
+        function deployAI() {
+            alert('デプロイ機能は開発中です。生成されたコードをPythonファイルとして保存し、ガイスターゲーム環境で実行してください。');
+        }
+
+        // Download code
+        function downloadCode() {
+            const code = document.getElementById('codeOutput').textContent;
+            const blob = new Blob([code], { type: 'text/python' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'quantum_geister_ai.py';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Copy code to clipboard
+        function copyCode() {
+            const code = document.getElementById('codeOutput').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                alert('コードがクリップボードにコピーされました！');
+            });
+        }
+
+        // Save configuration
+        function saveConfiguration() {
+            const config = {
+                placement: {
+                    strategy: document.getElementById('placementStrategy').value,
+                    board_state: boardState,
+                    placed_pieces: placedPieces
+                },
+                quantum: {
+                    algorithm: document.getElementById('estimationAlgorithm').value,
+                    qubits: document.getElementById('qubits').value,
+                    layers: document.getElementById('layers').value,
+                    entanglement: document.getElementById('entanglement').value,
+                    learning_rate: document.getElementById('learningRate').value
+                },
+                rewards: {
+                    escape: document.getElementById('escapeReward').value,
+                    capture: document.getElementById('captureReward').value,
+                    advance: document.getElementById('advanceReward').value
+                },
+                rl: {
+                    epsilon_start: document.getElementById('epsilonStart').value,
+                    epsilon_end: document.getElementById('epsilonEnd').value,
+                    epsilon_decay: document.getElementById('epsilonDecay').value,
+                    gamma: document.getElementById('gamma').value
+                }
+            };
+
+            localStorage.setItem('quantum_ai_config', JSON.stringify(config));
+            
+            // Show success message
+            const originalText = event.target.innerHTML;
+            event.target.innerHTML = '<i class="fas fa-check"></i>';
+            setTimeout(() => {
+                event.target.innerHTML = originalText;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>

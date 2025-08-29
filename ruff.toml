@@ -1,0 +1,14 @@
+# Ruff configuration
+line-length = 120
+
+[lint]
+# Allow automatic fixing of these errors
+fixable = ["ALL"]
+unfixable = []
+
+# Extend the default selection
+select = ["E", "F", "W"]
+
+[format]
+# Use 4 spaces for indentation
+indent-style = "space"

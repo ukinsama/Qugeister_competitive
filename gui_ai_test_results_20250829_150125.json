@@ -1,0 +1,1229 @@
+{
+  "timestamp": "20250829_150125",
+  "ai_stats": {
+    "GUI_Optimal": {
+      "wins": 48,
+      "losses": 25,
+      "draws": 17,
+      "games": 90,
+      "strength": 3.8999999999999995
+    },
+    "GUI_Aggressive": {
+      "wins": 41,
+      "losses": 31,
+      "draws": 18,
+      "games": 90,
+      "strength": 3.849999999999999
+    },
+    "GUI_Conservative": {
+      "wins": 26,
+      "losses": 47,
+      "draws": 17,
+      "games": 90,
+      "strength": 1.5
+    },
+    "Baseline": {
+      "wins": 30,
+      "losses": 42,
+      "draws": 18,
+      "games": 90,
+      "strength": 2.4000000000000004
+    }
+  },
+  "ranking": [
+    [
+      "GUI_Optimal",
+      {
+        "wins": 48,
+        "losses": 25,
+        "draws": 17,
+        "games": 90,
+        "strength": 3.8999999999999995
+      }
+    ],
+    [
+      "GUI_Aggressive",
+      {
+        "wins": 41,
+        "losses": 31,
+        "draws": 18,
+        "games": 90,
+        "strength": 3.849999999999999
+      }
+    ],
+    [
+      "Baseline",
+      {
+        "wins": 30,
+        "losses": 42,
+        "draws": 18,
+        "games": 90,
+        "strength": 2.4000000000000004
+      }
+    ],
+    [
+      "GUI_Conservative",
+      {
+        "wins": 26,
+        "losses": 47,
+        "draws": 17,
+        "games": 90,
+        "strength": 1.5
+      }
+    ]
+  ],
+  "detailed_results": [
+    {
+      "ai1": "GUI_Optimal",
+      "ai2": "GUI_Aggressive",
+      "wins_ai1": 15,
+      "wins_ai2": 10,
+      "draws": 5,
+      "win_rate_ai1": 0.5,
+      "win_rate_ai2": 0.3333333333333333,
+      "draw_rate": 0.16666666666666666,
+      "games": [
+        {
+          "game": 1,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 3.849999999999999
+        },
+        {
+          "game": 2,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 3.849999999999999
+        },
+        {
+          "game": 3,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 3.849999999999999
+        },
+        {
+          "game": 4,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 3.849999999999999
+        },
+        {
+          "game": 5,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 3.849999999999999
+        },
+        {
+          "game": 6,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 3.849999999999999
+        },
+        {
+          "game": 7,
+          "winner": "Draw",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 3.849999999999999
+        },
+        {
+          "game": 8,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 3.849999999999999
+        },
+        {
+          "game": 9,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 3.849999999999999
+        },
+        {
+          "game": 10,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 3.849999999999999
+        },
+        {
+          "game": 11,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 3.849999999999999
+        },
+        {
+          "game": 12,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 3.849999999999999
+        },
+        {
+          "game": 13,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 3.849999999999999
+        },
+        {
+          "game": 14,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 3.849999999999999
+        },
+        {
+          "game": 15,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 3.849999999999999
+        },
+        {
+          "game": 16,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 3.849999999999999
+        },
+        {
+          "game": 17,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 3.849999999999999
+        },
+        {
+          "game": 18,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 3.849999999999999
+        },
+        {
+          "game": 19,
+          "winner": "Draw",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 3.849999999999999
+        },
+        {
+          "game": 20,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 3.849999999999999
+        },
+        {
+          "game": 21,
+          "winner": "Draw",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 3.849999999999999
+        },
+        {
+          "game": 22,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 3.849999999999999
+        },
+        {
+          "game": 23,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 3.849999999999999
+        },
+        {
+          "game": 24,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 3.849999999999999
+        },
+        {
+          "game": 25,
+          "winner": "Draw",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 3.849999999999999
+        },
+        {
+          "game": 26,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 3.849999999999999
+        },
+        {
+          "game": 27,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 3.849999999999999
+        },
+        {
+          "game": 28,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 3.849999999999999
+        },
+        {
+          "game": 29,
+          "winner": "Draw",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 3.849999999999999
+        },
+        {
+          "game": 30,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 3.849999999999999
+        }
+      ]
+    },
+    {
+      "ai1": "GUI_Optimal",
+      "ai2": "GUI_Conservative",
+      "wins_ai1": 18,
+      "wins_ai2": 7,
+      "draws": 5,
+      "win_rate_ai1": 0.6,
+      "win_rate_ai2": 0.23333333333333334,
+      "draw_rate": 0.16666666666666666,
+      "games": [
+        {
+          "game": 1,
+          "winner": "Draw",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 2,
+          "winner": "GUI_Conservative",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 3,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 4,
+          "winner": "Draw",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 5,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 6,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 7,
+          "winner": "Draw",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 8,
+          "winner": "GUI_Conservative",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 9,
+          "winner": "Draw",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 10,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 11,
+          "winner": "GUI_Conservative",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 12,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 13,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 14,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 15,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 16,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 17,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 18,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 19,
+          "winner": "GUI_Conservative",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 20,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 21,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 22,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 23,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 24,
+          "winner": "Draw",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 25,
+          "winner": "GUI_Conservative",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 26,
+          "winner": "GUI_Conservative",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 27,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 28,
+          "winner": "GUI_Conservative",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 29,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 30,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 1.5
+        }
+      ]
+    },
+    {
+      "ai1": "GUI_Optimal",
+      "ai2": "Baseline",
+      "wins_ai1": 15,
+      "wins_ai2": 8,
+      "draws": 7,
+      "win_rate_ai1": 0.5,
+      "win_rate_ai2": 0.26666666666666666,
+      "draw_rate": 0.23333333333333334,
+      "games": [
+        {
+          "game": 1,
+          "winner": "Draw",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 2,
+          "winner": "Baseline",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 3,
+          "winner": "Baseline",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 4,
+          "winner": "Baseline",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 5,
+          "winner": "Draw",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 6,
+          "winner": "Baseline",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 7,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 8,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 9,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 10,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 11,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 12,
+          "winner": "Draw",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 13,
+          "winner": "Draw",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 14,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 15,
+          "winner": "Baseline",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 16,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 17,
+          "winner": "Draw",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 18,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 19,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 20,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 21,
+          "winner": "Baseline",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 22,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 23,
+          "winner": "Baseline",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 24,
+          "winner": "Draw",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 25,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 26,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 27,
+          "winner": "Draw",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 28,
+          "winner": "Baseline",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 29,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 30,
+          "winner": "GUI_Optimal",
+          "ai1_strength": 3.8999999999999995,
+          "ai2_strength": 2.4000000000000004
+        }
+      ]
+    },
+    {
+      "ai1": "GUI_Aggressive",
+      "ai2": "GUI_Conservative",
+      "wins_ai1": 16,
+      "wins_ai2": 7,
+      "draws": 7,
+      "win_rate_ai1": 0.5333333333333333,
+      "win_rate_ai2": 0.23333333333333334,
+      "draw_rate": 0.23333333333333334,
+      "games": [
+        {
+          "game": 1,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 2,
+          "winner": "GUI_Conservative",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 3,
+          "winner": "GUI_Conservative",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 4,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 5,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 6,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 7,
+          "winner": "Draw",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 8,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 9,
+          "winner": "Draw",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 10,
+          "winner": "Draw",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 11,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 12,
+          "winner": "GUI_Conservative",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 13,
+          "winner": "GUI_Conservative",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 14,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 15,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 16,
+          "winner": "GUI_Conservative",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 17,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 18,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 19,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 20,
+          "winner": "Draw",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 21,
+          "winner": "Draw",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 22,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 23,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 24,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 25,
+          "winner": "Draw",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 26,
+          "winner": "Draw",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 27,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 28,
+          "winner": "GUI_Conservative",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 29,
+          "winner": "GUI_Conservative",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 1.5
+        },
+        {
+          "game": 30,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 1.5
+        }
+      ]
+    },
+    {
+      "ai1": "GUI_Aggressive",
+      "ai2": "Baseline",
+      "wins_ai1": 15,
+      "wins_ai2": 9,
+      "draws": 6,
+      "win_rate_ai1": 0.5,
+      "win_rate_ai2": 0.3,
+      "draw_rate": 0.2,
+      "games": [
+        {
+          "game": 1,
+          "winner": "Baseline",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 2,
+          "winner": "Baseline",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 3,
+          "winner": "Baseline",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 4,
+          "winner": "Baseline",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 5,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 6,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 7,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 8,
+          "winner": "Draw",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 9,
+          "winner": "Draw",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 10,
+          "winner": "Draw",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 11,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 12,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 13,
+          "winner": "Draw",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 14,
+          "winner": "Draw",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 15,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 16,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 17,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 18,
+          "winner": "Baseline",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 19,
+          "winner": "Baseline",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 20,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 21,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 22,
+          "winner": "Baseline",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 23,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 24,
+          "winner": "Draw",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 25,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 26,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 27,
+          "winner": "Baseline",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 28,
+          "winner": "Baseline",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 29,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 30,
+          "winner": "GUI_Aggressive",
+          "ai1_strength": 3.849999999999999,
+          "ai2_strength": 2.4000000000000004
+        }
+      ]
+    },
+    {
+      "ai1": "GUI_Conservative",
+      "ai2": "Baseline",
+      "wins_ai1": 12,
+      "wins_ai2": 13,
+      "draws": 5,
+      "win_rate_ai1": 0.4,
+      "win_rate_ai2": 0.43333333333333335,
+      "draw_rate": 0.16666666666666666,
+      "games": [
+        {
+          "game": 1,
+          "winner": "Draw",
+          "ai1_strength": 1.5,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 2,
+          "winner": "Baseline",
+          "ai1_strength": 1.5,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 3,
+          "winner": "Baseline",
+          "ai1_strength": 1.5,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 4,
+          "winner": "Baseline",
+          "ai1_strength": 1.5,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 5,
+          "winner": "GUI_Conservative",
+          "ai1_strength": 1.5,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 6,
+          "winner": "GUI_Conservative",
+          "ai1_strength": 1.5,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 7,
+          "winner": "Baseline",
+          "ai1_strength": 1.5,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 8,
+          "winner": "Baseline",
+          "ai1_strength": 1.5,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 9,
+          "winner": "GUI_Conservative",
+          "ai1_strength": 1.5,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 10,
+          "winner": "GUI_Conservative",
+          "ai1_strength": 1.5,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 11,
+          "winner": "GUI_Conservative",
+          "ai1_strength": 1.5,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 12,
+          "winner": "Baseline",
+          "ai1_strength": 1.5,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 13,
+          "winner": "GUI_Conservative",
+          "ai1_strength": 1.5,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 14,
+          "winner": "Draw",
+          "ai1_strength": 1.5,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 15,
+          "winner": "Draw",
+          "ai1_strength": 1.5,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 16,
+          "winner": "GUI_Conservative",
+          "ai1_strength": 1.5,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 17,
+          "winner": "GUI_Conservative",
+          "ai1_strength": 1.5,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 18,
+          "winner": "Baseline",
+          "ai1_strength": 1.5,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 19,
+          "winner": "GUI_Conservative",
+          "ai1_strength": 1.5,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 20,
+          "winner": "GUI_Conservative",
+          "ai1_strength": 1.5,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 21,
+          "winner": "Draw",
+          "ai1_strength": 1.5,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 22,
+          "winner": "Baseline",
+          "ai1_strength": 1.5,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 23,
+          "winner": "Baseline",
+          "ai1_strength": 1.5,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 24,
+          "winner": "Baseline",
+          "ai1_strength": 1.5,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 25,
+          "winner": "Draw",
+          "ai1_strength": 1.5,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 26,
+          "winner": "GUI_Conservative",
+          "ai1_strength": 1.5,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 27,
+          "winner": "GUI_Conservative",
+          "ai1_strength": 1.5,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 28,
+          "winner": "Baseline",
+          "ai1_strength": 1.5,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 29,
+          "winner": "Baseline",
+          "ai1_strength": 1.5,
+          "ai2_strength": 2.4000000000000004
+        },
+        {
+          "game": 30,
+          "winner": "Baseline",
+          "ai1_strength": 1.5,
+          "ai2_strength": 2.4000000000000004
+        }
+      ]
+    }
+  ]
+}
