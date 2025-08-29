@@ -1,0 +1,33 @@
+{
+  "id": "53b28ecb",
+  "name": "test2",
+  "config": {
+    "placement": "standard",
+    "estimator": "cqcnn",
+    "reward": "standard",
+    "qmap": "simple",
+    "selector": "greedy"
+  },
+  "evaluation": {
+    "vs_random": {
+      "wins": 5,
+      "total": 10,
+      "win_rate": 0.5
+    },
+    "vs_simple": {
+      "wins": 5,
+      "total": 10,
+      "win_rate": 0.5
+    },
+    "vs_strong": {
+      "wins": 5,
+      "total": 10,
+      "win_rate": 0.5
+    },
+    "overall_win_rate": 0.5,
+    "total_wins": 15,
+    "total_games": 30,
+    "is_strong": false
+  },
+  "created_at": "2025-08-21T15:36:05.630295"
+}

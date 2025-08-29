@@ -1,4 +1,14 @@
-def _change_agents(self):
+    def initialize_game_with_placement(self, placement_a: Dict, placement_b: Dict):
+        """指定された配置でゲームを初期化"""
+        # Player Aの配置
+        for pos, piece_type in placement_a.items():
+            self.board[pos] = 1
+            self.player_a_pieces[pos] = piece_type
+        
+        # Player Bの配置
+        for pos, piece_type in placement_b.items():
+            self.board[pos] = -1
+            self.player_b_pieces[pos] = piece_type    def _change_agents(self):
         """AIを変更"""
         # ゲームを一時停止
         self.game_paused = True
@@ -178,10 +188,16 @@ class CQCNNAgent(BaseAgent):
     def __init__(self, player_id: str, model_path: Optional[str] = None):
         super().__init__(player_id, f"CQCNNAgent_{player_id}")
         self.model = self._load_or_create_model(model_path)
+        self.pieces_info = {}  # 自分の駒情報を保持
+    
+    def get_initial_placement(self) -> Dict[Tuple[int, int], str]:
+        """初期配置を取得（駒情報を記録）"""
+        placement = super().get_initial_placement()
+        self.pieces_info = placement.copy()  # 駒タイプを記録
+        return placement
     
     def _load_or_create_model(self, model_path: Optional[str]):
         """モデルを読み込むか新規作成"""
-        # 簡略化のため、ダミーモデルを返す
         class DummyCQCNN(nn.Module):
             def __init__(self):
                 super().__init__()
@@ -201,18 +217,80 @@ class CQCNNAgent(BaseAgent):
         
         return model
     
+    def _prepare_board_tensor_with_pieces(self, board: np.ndarray, 
+                                         my_pieces: Dict, player: str) -> torch.Tensor:
+        """駒タイプを含むボード状態をテンソルに変換（7チャンネル版）"""
+        tensor = torch.zeros(1, 7, 6, 6)
+        player_val = 1 if player == "A" else -1
+        enemy_val = -player_val
+        
+        # チャンネル0: 自分の善玉の位置
+        for pos, piece_type in my_pieces.items():
+            if piece_type == 'good' and board[pos] == player_val:
+                tensor[0, 0, pos[0], pos[1]] = 1.0
+        
+        # チャンネル1: 自分の悪玉の位置
+        for pos, piece_type in my_pieces.items():
+            if piece_type == 'bad' and board[pos] == player_val:
+                tensor[0, 1, pos[0], pos[1]] = 1.0
+        
+        # チャンネル2: 相手の駒の位置（種類不明）
+        tensor[0, 2] = torch.from_numpy((board == enemy_val).astype(np.float32))
+        
+        # チャンネル3: 空きマス
+        tensor[0, 3] = torch.from_numpy((board == 0).astype(np.float32))
+        
+        # チャンネル4: 自分の脱出口
+        if player == "A":
+            tensor[0, 4, 5, 0] = 1.0
+            tensor[0, 4, 5, 5] = 1.0
+        else:
+            tensor[0, 4, 0, 0] = 1.0
+            tensor[0, 4, 0, 5] = 1.0
+        
+        # チャンネル5: 相手の脱出口
+        if player == "A":
+            tensor[0, 5, 0, 0] = 1.0
+            tensor[0, 5, 0, 5] = 1.0
+        else:
+            tensor[0, 5, 5, 0] = 1.0
+            tensor[0, 5, 5, 5] = 1.0
+        
+        # チャンネル6: ターン進行度
+        if hasattr(self, 'current_turn'):
+            tensor[0, 6, :, :] = self.current_turn / 100.0
+        
+        return tensor
+    
     def get_move(self, game_state, legal_moves: List[Tuple]) -> Optional[Tuple]:
         if not legal_moves:
             return None
         
-        # 敵駒の推定（ダミー）
+        # 自分の駒情報を更新（移動により変化）
+        if self.player_id == "A":
+            current_pieces = game_state.player_a_pieces
+        else:
+            current_pieces = game_state.player_b_pieces
+        
+        # 駒タイプ情報を保持しながら更新
+        for pos in list(self.pieces_info.keys()):
+            if pos not in current_pieces:
+                del self.pieces_info[pos]
+        
+        for pos in current_pieces:
+            if pos not in self.pieces_info:
+                # 新しい位置の駒（移動してきた駒）
+                # 元の駒タイプを推測（簡略化）
+                self.pieces_info[pos] = current_pieces[pos]
+        
+        # 敵駒の推定
         enemy_val = -1 if self.player_id == "A" else 1
         self.last_estimations = {}
         
         for i in range(6):
             for j in range(6):
                 if game_state.board[i, j] == enemy_val:
-                    # ダミーの推定値
+                    # CQCNNモデルで推定（現在はダミー値）
                     self.last_estimations[(i, j)] = {
                         'good_prob': random.random(),
                         'bad_prob': random.random(),
@@ -235,19 +313,44 @@ class CQCNNAgent(BaseAgent):
         from_pos, to_pos = move
         value = 0.0
         
-        # 基本評価
-        if self.player_id == "A":
-            value += (to_pos[0] - from_pos[0]) * 0.3
-        else:
-            value += (from_pos[0] - to_pos[0]) * 0.3
+        # 自分の駒タイプを確認
+        piece_type = self.pieces_info.get(from_pos, 'unknown')
         
-        # 推定結果を使用
-        if to_pos in self.last_estimations:
-            est = self.last_estimations[to_pos]
-            # 相手の善玉を取ると高得点
-            value += est['good_prob'] * 3.0
-            # 相手の悪玉を取るのは避ける
-            value -= est['bad_prob'] * 1.0
+        if piece_type == 'good':
+            # 善玉：脱出を優先
+            if self.player_id == "A":
+                escape_positions = [(5, 0), (5, 5)]
+            else:
+                escape_positions = [(0, 0), (0, 5)]
+            
+            # 脱出口への距離
+            min_dist_after = min(abs(to_pos[0] - ep[0]) + abs(to_pos[1] - ep[1]) 
+                               for ep in escape_positions)
+            value -= min_dist_after * 0.5  # 近いほど高評価
+            
+            # 脱出口到達で最高評価
+            if to_pos in escape_positions:
+                value += 10.0
+            
+            # 相手の悪玉を避ける
+            if to_pos in self.last_estimations:
+                est = self.last_estimations[to_pos]
+                value -= est['bad_prob'] * 3.0
+        
+        elif piece_type == 'bad':
+            # 悪玉：敵を取る
+            if to_pos in self.last_estimations:
+                est = self.last_estimations[to_pos]
+                # 相手の善玉を取ると高得点
+                value += est['good_prob'] * 3.0
+                # 相手の悪玉も取る価値あり
+                value += est['bad_prob'] * 1.0
+        
+        # 基本的な前進評価
+        if self.player_id == "A":
+            value += (to_pos[0] - from_pos[0]) * 0.1
+        else:
+            value += (from_pos[0] - to_pos[0]) * 0.1
         
         return value + random.random() * 0.1
 
@@ -1401,18 +1504,6 @@ class SimpleGameEngine:
             self.board[pos] = -1
             self.player_b_pieces[pos] = piece_type
     
-    def initialize_game_with_placement(self, placement_a: dict, placement_b: dict):
-        """指定された配置でゲームを初期化"""
-        # Player Aの配置
-        for pos, piece_type in placement_a.items():
-            self.board[pos] = 1
-            self.player_a_pieces[pos] = piece_type
-        
-        # Player Bの配置
-        for pos, piece_type in placement_b.items():
-            self.board[pos] = -1
-            self.player_b_pieces[pos] = piece_type   
-    
     def get_legal_moves(self, player: str) -> List[Tuple]:
         """合法手を取得"""
         moves = []
@@ -1513,43 +1604,6 @@ class SimpleGameEngine:
         self.player_b_pieces = {}
         self.turn = 0
         self.winner = None
-    
-    def _start_game(self):
-        """ゲームを開始"""
-        self.game_engine = SimpleGameEngine()
-        
-        # エージェントの初期配置を取得
-        placement_a = self.agent1.get_initial_placement()
-        placement_b = self.agent2.get_initial_placement()
-        
-        # initialize_game_with_placementがない場合は手動で設定
-        self.game_engine.board = np.zeros((6, 6), dtype=int)
-        self.game_engine.player_a_pieces = {}
-        self.game_engine.player_b_pieces = {}
-        
-        for pos, piece_type in placement_a.items():
-            self.game_engine.board[pos] = 1
-            self.game_engine.player_a_pieces[pos] = piece_type
-        
-        for pos, piece_type in placement_b.items():
-            self.game_engine.board[pos] = -1
-            self.game_engine.player_b_pieces[pos] = piece_type
-        
-        # ボード状態を更新
-        self.board.update_state(
-            self.game_engine.board,
-            self.game_engine.player_a_pieces,
-            self.game_engine.player_b_pieces
-        )
-        
-        self.game_running = True
-        self.current_player = 'A'
-        
-        self.info_panel.update_info(
-            turn=0,
-            current_player='A',
-            status='Playing'
-        )
 
 
 def create_demo_agent(player_id: str, name: str):

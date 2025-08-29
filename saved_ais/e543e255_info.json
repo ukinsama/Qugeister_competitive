@@ -1,0 +1,33 @@
+{
+  "id": "e543e255",
+  "name": "test04",
+  "config": {
+    "placement": "defensive",
+    "estimator": "cqcnn",
+    "reward": "smart",
+    "qmap": "strategic",
+    "selector": "softmax"
+  },
+  "evaluation": {
+    "vs_random": {
+      "wins": 7,
+      "total": 10,
+      "win_rate": 0.7
+    },
+    "vs_simple": {
+      "wins": 8,
+      "total": 10,
+      "win_rate": 0.8
+    },
+    "vs_strong": {
+      "wins": 3,
+      "total": 10,
+      "win_rate": 0.3
+    },
+    "overall_win_rate": 0.6,
+    "total_wins": 18,
+    "total_games": 30,
+    "is_strong": true
+  },
+  "created_at": "2025-08-21T15:39:54.450642"
+}

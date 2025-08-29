@@ -1,0 +1,28 @@
+{
+  "learningType": "supervised",
+  "modules": {
+    "evaluator": null,
+    "search": null,
+    "optimizer": null,
+    "memory": "episodic",
+    "placement": "standard",
+    "estimator": "pattern",
+    "reward": "balanced",
+    "qmap": "supervised",
+    "action": "greedy"
+  },
+  "parameters": {
+    "learningRate": 0.0099,
+    "batchSize": 32,
+    "epochs": 100,
+    "discountFactor": 0.95,
+    "epsilon": 0.05,
+    "searchDepth": 5,
+    "temperature": 1,
+    "simulations": 1000,
+    "hiddenLayers": 2,
+    "neurons": 128,
+    "activation": "relu",
+    "dropout": 0.2
+  }
+}
