@@ -1,0 +1,25 @@
+{
+  "placement": {
+    "strategy": "standard",
+    "randomize": true
+  },
+  "estimator": {
+    "n_qubits": 6,
+    "n_layers": 2,
+    "is_trained": false,
+    "device": "cpu"
+  },
+  "reward": {
+    "type": "defensive",
+    "retreat_bonus": 1.0,
+    "edge_bonus": 1.5
+  },
+  "qmap": {
+    "type": "strategic",
+    "strategy": "defensive"
+  },
+  "action": {
+    "type": "boltzmann",
+    "temperature": 0.8
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "placement": {
+    "strategy": "standard",
+    "randomize": true
+  },
+  "estimator": {
+    "n_qubits": 6,
+    "n_layers": 2,
+    "is_trained": false,
+    "device": "cpu"
+  },
+  "reward": {
+    "type": "escape",
+    "approach_bonus": 5.0,
+    "escape_bonus": 50.0
+  },
+  "qmap": {
+    "type": "strategic",
+    "strategy": "escape"
+  },
+  "action": {
+    "type": "ucb",
+    "c": 1.5,
+    "total_count": 0
+  }
+}

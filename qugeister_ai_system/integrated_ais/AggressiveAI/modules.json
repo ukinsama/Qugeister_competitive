@@ -1,0 +1,25 @@
+{
+  "placement": {
+    "strategy": "standard",
+    "randomize": true
+  },
+  "estimator": {
+    "n_qubits": 6,
+    "n_layers": 2,
+    "is_trained": false,
+    "device": "cpu"
+  },
+  "reward": {
+    "type": "aggressive",
+    "forward_bonus": 2.0,
+    "center_bonus": 1.5
+  },
+  "qmap": {
+    "type": "strategic",
+    "strategy": "aggressive"
+  },
+  "action": {
+    "type": "epsilon_greedy",
+    "epsilon": 0.1
+  }
+}

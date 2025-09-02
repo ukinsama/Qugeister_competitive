@@ -1,0 +1,67 @@
+# Python
+*.py[cod]
+__pycache__/
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+env/
+quantum-env/
+
+# PyTorch
+*.pth
+*.pt
+checkpoint/
+runs/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Project specific
+trained_models/
+tournament_results/
+battle_records/
+output/
+results/
+*.log
+*.csv
+*.json
+!config.json
+!modules.json
+!package.json
+
+# Images
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+
+# Documentation build
+docs/_build/
