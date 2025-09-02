@@ -1,0 +1,18 @@
+# ミニマル Qugeister Competition 依存関係
+# 基本AI対戦・トーナメント実行用
+
+# Core AI/ML Libraries
+torch>=2.0.0
+numpy>=1.21.0
+
+# Visualization (optional for results)
+matplotlib>=3.5.0
+
+# Standard libraries (usually included with Python)
+# json (built-in)
+# datetime (built-in) 
+# pathlib (built-in)
+# typing (built-in)
+
+# Optional: 量子シミュレーション用 (上級ユーザー向け)
+# pennylane>=0.30.0
